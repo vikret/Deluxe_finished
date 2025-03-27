@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Продукти – Deluxe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .category-btn:hover { text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+  <nav class="flex items-center justify-between p-4 bg-gray-800">
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="Deluxe Logo" class="w-20 h-10" />
+    </div>
+    <div class="space-x-6">
+      <a href="index.html" class="hover:text-lime-400">Начало</a>
+      <a href="products.html" class="hover:text-lime-400">Продукти</a>
+      <a href="about.html" class="hover:text-lime-400">Кои сме ние</a>
+      <a href="delivery.html" class="hover:text-lime-400">Доставка</a>
+    </div>
+  </nav>
+
+  <section class="px-6 py-6 bg-red-700 text-white text-sm font-semibold text-center whitespace-nowrap overflow-x-auto">
+    <div class="flex flex-wrap justify-center space-x-6">
+      <span onclick="filterProducts('all')" class="category-btn">ВСИЧКИ</span>
+      <span onclick="filterProducts('alcohol')" class="category-btn">АЛКОХОЛ</span>
+      <span onclick="filterProducts('mezeta')" class="category-btn">МЕЗЕТА</span>
+      <span onclick="filterProducts('nuts')" class="category-btn">ЯДКИ</span>
+      <span onclick="filterProducts('promotion')" class="category-btn">ПРОМОЦИИ</span>
+    </div>
+  </section>
+
+  <section class="py-8 px-6">
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto" id="productGrid">
+    </div>
+  </section>
+
+  <script>
+    const products = {
+    alcohol: [
+      { title: "Baileys Original Irish Cream – 700 мл", image: "baileys.png", desc: "Кадифен крем ликьор с нотки на уиски, какао и ванилия.", price: "29,99 лв." },
+      { title: "Finlandia Classic Vodka – 700 мл", image: "finlandia.png", desc: "Кристално чиста водка, отличен избор за коктейли.", price: "22,99 лв." },
+      { title: "Jack Daniel's Tennessee Whiskey – 700 мл", image: "jackdaniels.png", desc: "Класическо американско уиски с карамелени нотки.", price: "38,99 лв." },
+      { title: "Jameson Irish Whiskey – 700 мл", image: "jameson.png", desc: "Ирландско уиски с мек вкус и плодов аромат.", price: "35,49 лв." },
+      { title: "Martini Bianco – 1 л", image: "martini.png", desc: "Ароматен вермут, перфектен за коктейли.", price: "16,99 лв." },
+      { title: "Captain Morgan Spiced Rum – 700 мл", image: "captain.png", desc: "Ром с богати подправки и мек вкус.", price: "27,99 лв." },
+      { title: "Hennessy VS Cognac – 700 мл", image: "hennessy.png", desc: "Френски коняк с дълбок вкус и аромат.", price: "72,99 лв." }
+    ],
+    mezeta: [
+      { title: "Червен хайвер (80 г)", image: "caviar.png", desc: "Фин червен хайвер с деликатен вкус и кремообразна текстура.", price: "18,99 лв." },
+      { title: "Френско синьо сирене Roquefort (150 г)", image: "roquefort.png", desc: "Легендарно сирене с интензивен вкус.", price: "14,99 лв." },
+      { title: "Италиански тъмен шоколад (80% какао, 100 г)", image: "darkchocolate.png", desc: "Наситен вкус, допълва силните напитки.", price: "9,99 лв." },
+      { title: "Испанско прошуто (Jamon Serrano, 100 г)", image: "jamon.png", desc: "Отлежало прошуто със силен, но балансиран вкус.", price: "16,99 лв." }
+    ],
+    nuts: [
+      { title: "Луксозни миксирани ядки (250 г)", image: "nuts.png", desc: "Комбинация от бадеми, кашу и орехи.", price: "12,99 лв." },
+      { title: "Печени бадеми (200 г)", image: "almonds.png", desc: "Класически печени бадеми – хрупкави и вкусни.", price: "8,99 лв." },
+      { title: "Кашу с морска сол (200 г)", image: "cashews.png", desc: "Кремообразно и солено удоволствие.", price: "9,99 лв." },
+      { title: "Орехи половинки (250 г)", image: "walnuts.png", desc: "Български орехи – натурални и ароматни.", price: "7,49 лв." }
+    ],
+    promotion: [
+      { title: "ВОДКА РУСКИ СТАНДАРТ 1Л+0.5Л", image: "promotion1.png", desc: "", price: "31.99 лв." },
+      { title: "УИСКИ ТЮЛАМОР ДЮ 0,7Л С 2 ЧАШИ", image: "promotion2.png", desc: "", price: "28.97 лв." },
+      { title: "ДЖИН БИКЕНС 0,7Л ПИНК+2БР ТОНИК КЕН 0,33Л И ЧАША", image: "promotion3.png", desc: "", price: "22.49 лв." }
+    ]
+  };
+    function createCard(p) {
+      return `
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden">
+          <img src="${p.image}" alt="${p.title}" class="w-full h-60 object-contain mb-4" />
+          <h2 class="text-2xl font-semibold mb-2">${p.title}</h2>
+          <p class="mb-2">${p.desc}</p>
+          <p class="font-bold text-lime-400 mb-4">${p.price}</p>
+          <button class="bg-lime-400 text-gray-900 px-4 py-2 rounded hover:bg-lime-300 font-semibold">Добави в количката</button>
+        </div>`;
+    }
+
+    function renderProducts(cat) {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = '';
+      if (cat === 'all') {
+        Object.values(products).flat().forEach(p => grid.innerHTML += createCard(p));
+      } else {
+        products[cat].forEach(p => grid.innerHTML += createCard(p));
+      }
+    }
+
+    function filterProducts(cat) {
+      history.replaceState(null, '', '?category=' + cat);
+      renderProducts(cat);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category') || 'all';
+    renderProducts(cat);
+  </script>
+
+<footer class="mt-auto text-center text-sm py-6 bg-gray-800">
+  &copy; 2025 Deluxe. Всички права запазени.
+</footer>
+</body>
+</html>

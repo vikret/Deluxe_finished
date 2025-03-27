@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deluxe – Онлайн Магазин за Алкохол и Гурме</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+  <nav class="flex items-center justify-between p-4 bg-gray-800">
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="Deluxe Logo" class="w-20 h-10" />
+    </div>
+    <div class="space-x-6">
+      <a href="index.html" class="hover:text-lime-400">Начало</a>
+      <a href="products.html" class="hover:text-lime-400">Продукти</a>
+      <a href="about.html" class="hover:text-lime-400">Кои сме ние</a>
+      <a href="delivery.html" class="hover:text-lime-400">Доставка</a>
+    </div>
+  </nav>
+
+  <header class="relative h-[500px] bg-cover bg-center flex flex-col justify-center items-center text-center px-4 before:absolute before:inset-0 before:bg-black before:bg-opacity-60 before:z-0"
+        style="background-image: url('backround.png');">
+  
+  <h1 class="relative z-10 text-4xl md:text-5xl font-bold text-lime-400 bg-black bg-opacity-60 px-4 py-2 rounded">
+    Deluxe – Вкусът на истинския лукс
+  </h1>
+  <p class="relative z-10 mt-4 text-xl bg-black bg-opacity-60 text-white px-4 py-2 rounded">
+    Напитки и гурме удоволствия за ценители
+  </p>
+  <div class="relative z-10 mt-6 space-x-4">
+    <a href="products.html?category=alcohol" class="bg-lime-400 text-gray-900 px-4 py-2 rounded hover:bg-lime-300 font-semibold">Разгледай колекцията</a>
+    <a href="products.html?category=mezeta" class="bg-lime-500 text-gray-900 px-4 py-2 rounded hover:bg-lime-400 font-semibold">Перфектното допълнение</a>
+  </div>
+</header>
+
+
+
+  <section class="text-center py-10 px-4">
+    <h2 class="text-3xl font-semibold mb-6">Категории</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      <a href="products.html?category=alcohol">
+        <div class="bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+          <h3 class="text-xl font-bold text-lime-400">Алкохолни напитки</h3>
+        </div>
+      </a>
+      <a href="products.html?category=mezeta">
+        <div class="bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+          <h3 class="text-xl font-bold text-lime-400">Гурме мезета</h3>
+        </div>
+      </a>
+      <a href="products.html?category=nuts">
+        <div class="bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+          <h3 class="text-xl font-bold text-lime-400">Ядки</h3>
+        </div>
+      </a>
+      <a href="products.html?category=promotion">
+        <div class="bg-gray-800 p-6 rounded-xl shadow hover:-translate-y-1 transition">
+          <h3 class="text-xl font-bold text-lime-400">Промоции</h3>
+        </div>
+      </a>
+    </div>
+    <!-- 18+ Възрастова проверка -->
+<div id="ageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+  <div class="bg-white text-gray-900 p-6 rounded-xl text-center max-w-sm shadow-lg">
+    <h2 class="text-2xl font-bold mb-4">Потвърди възраст</h2>
+    <p class="mb-6">Този сайт е предназначен за лица над 18 години.</p>
+    <button onclick="acceptAge()" class="bg-lime-500 hover:bg-lime-400 px-6 py-2 rounded font-semibold text-black">
+      Да, навършил/а съм 18
+    </button>
+  </div>
+</div>
+
+<script>
+  function acceptAge() {
+    document.getElementById('ageModal').style.display = 'none';
+  }
+</script>
+
+  </section>
+
+  <footer class="mt-auto text-center text-sm py-6 bg-gray-800">
+    &copy; 2025 Deluxe. Всички права запазени.
+  </footer>
+</body>
+</html>
